@@ -31,7 +31,7 @@
     <mappers>
     	<!-- 配置mapper的位置 -->
     	 <mapper resource="com/bdqn/mapper/UserMapper.xml" />
-    	
+        <mapper resource="com/bdqn/mapper/EmpMapper.xml" />
     	<!-- 包扫描的方式 -->
     	<!--<package name="com.baqn.mapper"/>-->
     </mappers>

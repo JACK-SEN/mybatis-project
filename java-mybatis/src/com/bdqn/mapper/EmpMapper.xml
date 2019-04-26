@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bdqn.mapper.EmpMapper">
+	<!--属性字段映射-->
+	<resultMap id="empEntity" type="com.bdqn.entity.Emp">
+		<id property="id" column="id" javaType="java.lang.Integer"></id>
+		<result property="empId" column="employee_id" javaType="java.lang.String"></result>
+		<result property="username" column="username" javaType="java.lang.String"></result>
+		<result property="realName" column="realname" javaType="java.lang.String"></result>
+		<result property="sex" column="sex" javaType="java.lang.String"></result>
+		<result property="password" column="pass" javaType="java.lang.String"></result>
+		<result property="email" column="email" javaType="java.lang.String"></result>
+		<result property="birthday" column="birth" javaType="java.util.Date"></result>
+		<result property="phone" column="phone" javaType="java.lang.String"></result>
+		<result property="address" column="address" javaType="java.lang.String"></result>
+		<result property="jobTime" column="create_time" javaType="java.util.Date"></result>
+		<result property="departId" column="department_id" javaType="java.lang.String"></result>
+	</resultMap>
+
+	<!--条件查询员工信息-->
+	<select id="findEmp" parameterType="java.util.Map" resultMap="empEntity">
+		SELECT ID,EMPLOYEE_ID,USERNAME,REALNAME,SEX,EMAIL,BIRTH,PHONE,ADDRESS,CREATE_TIME,DEPARTMENT_ID
+		FROM EMPLOYEE
+		<where>
+			1=1
+			<if test="username != null">
+			 AND username = #{username}
+			</if>
+			<if test="empId != null">
+			  AND employee_id = #{empId}
+			</if>
+			<if test="realName != null">
+			  AND realname like #{realName}
+			</if>
+			<if test="departId != null">
+			  AND department_id = #{departId}
+			</if>
+		</where>
+	</select>
+</mapper>
