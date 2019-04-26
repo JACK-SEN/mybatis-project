@@ -51,4 +51,13 @@ public interface UserMapper {
      * @date: 2019/4/26 10:04
      */
     Integer deleteUserByPrimaryKey(Integer id);
+    /**
+     * 功能描述:
+     * 修改用户
+     * @param:
+     * @return:
+     * @auther: lth
+     * @date: 2019/4/26 10:45
+     */
+    Integer updateUser(User user);
 }

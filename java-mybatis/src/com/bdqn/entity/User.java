@@ -44,7 +44,7 @@ public class User {
         this.job = job;
     }
 
-    public double getSalary() {
+    public Integer getSalary() {
         return salary;
     }
 

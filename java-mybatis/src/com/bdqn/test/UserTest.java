@@ -107,4 +107,31 @@ public class UserTest {
             sqlSession.rollback();
         }
     }
+    /**修改用户*/
+    @Test
+    public void updateUser()throws Exception{
+        InputStream inputStream = Resources.getResourceAsStream("config/mybatis.cfg.xml");
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+        try {
+            User user = new User();
+            user.setEid(181003);
+            user.setName("张珊珊");
+            user.setJob("就业专员");
+            user.setDepartId(10030);
+            user.setCreatetime(new Date());
+            user.setSalary(15100);
+            Integer i = userMapper.updateUser(user);
+            if(1 == i){
+                System.out.println("更新成功");
+            }else{
+                System.out.println("更新失败");
+            }
+            sqlSession.commit();
+        }catch (Exception e){
+            e.printStackTrace();
+            sqlSession.rollback();
+        }
+    }
 }

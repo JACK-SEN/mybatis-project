@@ -22,4 +22,8 @@
 	<delete id="deleteUserByPrimaryKey" parameterType="java.lang.Integer">
 		DELETE FROM empty WHERE  eid = #{id}
 	</delete>
+	<update id="updateUser" parameterType="com.bdqn.entity.User">
+		UPDATE  empty SET  name = #{name},gonz = #{job},gz = #{salary},rztime = #{createtime},e_d_id = #{departId} WHERE eid = #{eid}
+	</update>
+
 </mapper>
