@@ -26,4 +26,63 @@
 		UPDATE  empty SET  name = #{name},gonz = #{job},gz = #{salary},rztime = #{createtime},e_d_id = #{departId} WHERE eid = #{eid}
 	</update>
 
+	<insert id="insertUserExample" parameterType="com.bdqn.entity.User">
+		INSERT  INTO empty (
+			<if test="eid !=null and eid != '' ">eid,</if>
+			<if test=" name !=null and name !='' ">
+				name ,
+			</if>
+			<if test="job !=null and job !='' ">
+				gongz ,
+			</if>
+			<if test="salary !=null and salary != '' ">
+				gz ,
+			</if>
+			<if test="departId !=null and depart != '' ">
+				e_d_id,
+			</if>
+			rztime
+		)values(
+		<if test="eid !=null and eid != '' ">
+			#{eid},
+		</if>
+		<if test=" name !=null and name !='' ">
+			#{name} ,
+		</if>
+		<if test="job !=null and job !='' ">
+			#{job} ,
+		</if>
+		<if test="salary !=null and salary != '' ">
+			 #{salary},
+		</if>
+		<if test="departId !=null and depart != '' ">
+			#{departId},
+		</if>
+		now()
+		)
+	</insert>
+	<update id="updateUserExample" parameterType="com.bdqn.entity.User">
+		UPDATE empty
+		<set>
+			<if test="name != null and name != ''">
+				name = #{name},
+			</if>
+			<if test="job !=null and job !='' ">
+				gongz = #{job},
+			</if>
+			<if test="salary !=null and salary != ''">
+				gz = #{salary},
+			</if>
+			<if test="createtime !=null and createtime != ''">
+				rztime = #{createtime},
+			</if>
+			<if test="departId !=null and departId != ''">
+				e_d_id = #{departId},
+			</if>
+		</set>
+
+		WHERE eid =#{eid}
+
+
+	</update>
 </mapper>

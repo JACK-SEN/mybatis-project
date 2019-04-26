@@ -60,4 +60,22 @@ public interface UserMapper {
      * @date: 2019/4/26 10:45
      */
     Integer updateUser(User user);
+    /**
+     * 功能描述:
+     *  新增用户+字段条件判断
+     * @param: User
+     * @return: integer
+     * @auther: lth
+     * @date: 2019/4/26 11:48
+     */
+    Integer insertUserExample(User user);
+    /**
+     * 功能描述:
+     *  修改用户+字段条件判断
+     * @param:
+     * @return:
+     * @auther: lth
+     * @date: 2019/4/26 12:14
+     */
+    Integer updateUserExample(User user);
 }

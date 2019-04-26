@@ -134,4 +134,51 @@ public class UserTest {
             sqlSession.rollback();
         }
     }
+    /**新增用户+条件判断*/
+    @Test
+    public void insertUserExample()throws  Exception{
+        InputStream inputStream = Resources.getResourceAsStream("config/mybatis.cfg.xml");
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+        try {
+            User user = new User();
+            user.setEid(181004);
+            user.setName("张胜男");
+            Integer i = userMapper.insertUserExample(user);
+            if(1 == i){
+                System.out.println("插入成功");
+            }else{
+                System.out.println("插入失败");
+            }
+            sqlSession.commit();
+        }catch (Exception e){
+            e.printStackTrace();
+            sqlSession.rollback();
+        }
+    }
+    /**修改用户字段条件判断*/
+    @Test
+    public void updateUserExample()throws  Exception{
+        InputStream inputStream = Resources.getResourceAsStream("config/mybatis.cfg.xml");
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+        try {
+            User user = new User();
+           user.setName("李思绶");
+            user.setEid(151001);
+            user.setSalary(15121);
+            Integer i = userMapper.updateUserExample(user);
+            if(1 == i){
+                System.out.println("修改成功");
+            }else{
+                System.out.println("修改失败");
+            }
+            sqlSession.commit();
+        }catch (Exception e){
+            e.printStackTrace();
+            sqlSession.rollback();
+        }
+    }
 }
