@@ -54,8 +54,8 @@ public interface UserMapper {
     /**
      * 功能描述:
      * 修改用户
-     * @param:
-     * @return:
+     * @param: User
+     * @return: Integer
      * @auther: lth
      * @date: 2019/4/26 10:45
      */
