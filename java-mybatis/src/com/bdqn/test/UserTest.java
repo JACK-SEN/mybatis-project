@@ -95,7 +95,7 @@ public class UserTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         UserMapper usermapper = sqlSession.getMapper(UserMapper.class);
         try {
-            Integer i = usermapper.deleteUserByPrimaryKey(156001);
+            Integer i = usermapper.deleteUserByPrimaryKey(157001);
             if(1 == i){
                 System.out.println("删除成功");
             }else{
