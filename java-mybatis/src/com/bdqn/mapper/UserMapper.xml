@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bdqn.mapper.UserMapper">
+
+	<resultMap id="userEntity" type="com.bdqn.entity.User">
+		<id property="eid" column="eid" javaType="java.lang.Integer"></id>
+		<result property="name" column="name" javaType="java.lang.String"></result>
+		<result property="job" column="gonz"  javaType="java.lang.String"></result>
+		<result property="salary" column="gz" javaType="java.lang.Integer"></result>
+		<result property="createtime" column="rztime" javaType="java.util.Date"></result>
+		<result property="departId" column="e_d_id" javaType="java.lang.Integer"></result>
+	</resultMap>
+	<select id="findUserByPrimaryKey" parameterType="java.lang.Integer" resultMap="userEntity">
+		SELECT  * FROM empty WHERE  eid = #{eid}
+	</select>
+	<select id="findUser" parameterType="java.util.Map" resultMap="userEntity">
+		SELECT  * FROM  empty limit #{page},#{rows}
+	</select>
+	<insert id="insertUser" parameterType="com.bdqn.entity.User">
+		INSERT  INTO  empty values(#{eid},#{name },#{job},#{salary},now(),#{departId})
+	</insert>
+	<delete id="deleteUserByPrimaryKey" parameterType="java.lang.Integer">
+		DELETE FROM empty WHERE  eid = #{id}
+	</delete>
+</mapper>
