@@ -19,7 +19,7 @@ import java.io.InputStream;
 public class SqlSessionUtil {
 
     private static SqlSessionFactory sqlSessionFactory;
-    private static final String CONFIG = "config/mybatis.cfg.xml";
+    private static final String CONFIG = "config/mybatis-config.xml";
 
     static{
         try {

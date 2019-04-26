@@ -27,7 +27,7 @@ public class UserTest {
     @Test
     public void testInsertUser() throws Exception {
         // 加载核心配置文件
-        InputStream stream = Resources.getResourceAsStream("config/mybatis.cfg.xml");
+        InputStream stream = Resources.getResourceAsStream("config/mybatis-config.xml");
         // 创建SqlSessionFactory
         SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(stream);
         // 创建SqlSession
@@ -47,7 +47,7 @@ public class UserTest {
     /**分页查询用户*/
     @Test
     public void findUser()throws  Exception{
-        InputStream inputStream = Resources.getResourceAsStream("config/mybatis.cfg.xml");
+        InputStream inputStream = Resources.getResourceAsStream("config/mybatis-config.xml");
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
         SqlSession sqlSession = sqlSessionFactory.openSession();
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
@@ -68,7 +68,7 @@ public class UserTest {
     /**插入用户*/
     @Test
     public void insertUser()throws  Exception{
-        InputStream inputStream = Resources.getResourceAsStream("config/mybatis.cfg.xml");
+        InputStream inputStream = Resources.getResourceAsStream("config/mybatis-config.xml");
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
         SqlSession sqlSession = sqlSessionFactory.openSession();
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
@@ -90,7 +90,7 @@ public class UserTest {
     /**删除用户*/
     @Test
     public void deleteUserByPrimayKey()throws Exception{
-        InputStream inputStream = Resources.getResourceAsStream("config/mybatis.cfg.xml");
+        InputStream inputStream = Resources.getResourceAsStream("config/mybatis-config.xml");
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
         SqlSession sqlSession = sqlSessionFactory.openSession();
         UserMapper usermapper = sqlSession.getMapper(UserMapper.class);
@@ -110,7 +110,7 @@ public class UserTest {
     /**修改用户*/
     @Test
     public void updateUser()throws Exception{
-        InputStream inputStream = Resources.getResourceAsStream("config/mybatis.cfg.xml");
+        InputStream inputStream = Resources.getResourceAsStream("config/mybatis-config.xml");
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
         SqlSession sqlSession = sqlSessionFactory.openSession();
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
@@ -137,7 +137,7 @@ public class UserTest {
     /**新增用户+条件判断*/
     @Test
     public void insertUserExample()throws  Exception{
-        InputStream inputStream = Resources.getResourceAsStream("config/mybatis.cfg.xml");
+        InputStream inputStream = Resources.getResourceAsStream("config/mybatis-config.xml");
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
         SqlSession sqlSession = sqlSessionFactory.openSession();
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
@@ -160,7 +160,7 @@ public class UserTest {
     /**修改用户字段条件判断*/
     @Test
     public void updateUserExample()throws  Exception{
-        InputStream inputStream = Resources.getResourceAsStream("config/mybatis.cfg.xml");
+        InputStream inputStream = Resources.getResourceAsStream("config/mybatis-config.xml");
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
         SqlSession sqlSession = sqlSessionFactory.openSession();
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);

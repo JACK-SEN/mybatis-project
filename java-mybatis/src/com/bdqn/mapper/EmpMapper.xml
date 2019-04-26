@@ -1,40 +1,147 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bdqn.mapper.EmpMapper">
-	<!--属性字段映射-->
-	<resultMap id="empEntity" type="com.bdqn.entity.Emp">
-		<id property="id" column="id" javaType="java.lang.Integer"></id>
-		<result property="empId" column="employee_id" javaType="java.lang.String"></result>
-		<result property="username" column="username" javaType="java.lang.String"></result>
-		<result property="realName" column="realname" javaType="java.lang.String"></result>
-		<result property="sex" column="sex" javaType="java.lang.String"></result>
-		<result property="password" column="pass" javaType="java.lang.String"></result>
-		<result property="email" column="email" javaType="java.lang.String"></result>
-		<result property="birthday" column="birth" javaType="java.util.Date"></result>
-		<result property="phone" column="phone" javaType="java.lang.String"></result>
-		<result property="address" column="address" javaType="java.lang.String"></result>
-		<result property="jobTime" column="create_time" javaType="java.util.Date"></result>
-		<result property="departId" column="department_id" javaType="java.lang.String"></result>
-	</resultMap>
+    <!--属性字段映射-->
+    <resultMap id="empEntity" type="com.bdqn.entity.Emp">
+        <id property="id" column="id" javaType="java.lang.Integer"></id>
+        <result property="empId" column="employee_id" javaType="java.lang.String"></result>
+        <result property="username" column="username" javaType="java.lang.String"></result>
+        <result property="realName" column="realname" javaType="java.lang.String"></result>
+        <result property="sex" column="sex" javaType="java.lang.String"></result>
+        <result property="password" column="pass" javaType="java.lang.String"></result>
+        <result property="email" column="email" javaType="java.lang.String"></result>
+        <result property="birthday" column="birth" javaType="java.util.Date"></result>
+        <result property="phone" column="phone" javaType="java.lang.String"></result>
+        <result property="address" column="address" javaType="java.lang.String"></result>
+        <result property="jobTime" column="create_time" javaType="java.util.Date"></result>
+        <result property="departId" column="department_id" javaType="java.lang.String"></result>
+    </resultMap>
 
-	<!--条件查询员工信息-->
-	<select id="findEmp" parameterType="java.util.Map" resultMap="empEntity">
-		SELECT ID,EMPLOYEE_ID,USERNAME,REALNAME,SEX,EMAIL,BIRTH,PHONE,ADDRESS,CREATE_TIME,DEPARTMENT_ID
-		FROM EMPLOYEE
-		<where>
-			1=1
-			<if test="username != null">
-			 AND username = #{username}
-			</if>
-			<if test="empId != null">
-			  AND employee_id = #{empId}
-			</if>
-			<if test="realName != null">
-			  AND realname like #{realName}
-			</if>
-			<if test="departId != null">
-			  AND department_id = #{departId}
-			</if>
-		</where>
-	</select>
+    <!--条件查询员工信息-->
+    <select id="findEmp" parameterType="java.util.Map" resultMap="empEntity">
+        SELECT ID,EMPLOYEE_ID,USERNAME,REALNAME,SEX,EMAIL,BIRTH,PHONE,ADDRESS,CREATE_TIME,DEPARTMENT_ID
+        FROM EMPLOYEE
+        <where>
+            <if test="username != null">
+                AND username = #{username}
+            </if>
+            <if test="empId != null">
+                AND employee_id = #{empId}
+            </if>
+            <if test="realName != null">
+                AND realname like #{realName}
+            </if>
+            <if test="departId != null">
+                AND department_id = #{departId}
+            </if>
+        </where>
+    </select>
+    <select id="findEmp2" parameterType="java.util.Map" resultMap="empEntity">
+        SELECT ID,EMPLOYEE_ID,USERNAME,REALNAME,SEX,EMAIL,BIRTH,PHONE,ADDRESS,CREATE_TIME,DEPARTMENT_ID
+        FROM EMPLOYEE
+        <where>
+            <choose>
+                <when test="username != null">
+                    AND username = #{username}
+                </when>
+                <when test="empId != null">
+                    AND empId = #{employee_id}
+                </when>
+                <otherwise>
+                    AND id = #{id}
+                </otherwise>
+            </choose>
+        </where>
+    </select>
+    <select id="findEmpByIds" parameterType="com.bdqn.entity.ParamExample" resultMap="empEntity">
+        SELECT ID,EMPLOYEE_ID,USERNAME,REALNAME,SEX,EMAIL,BIRTH,PHONE,ADDRESS,CREATE_TIME,DEPARTMENT_ID
+        FROM EMPLOYEE
+        <where>
+            <if test="ids != null">
+                <foreach collection="ids" item="id" open=" id in(" close=" ) " separator=",">
+                    #{id}
+                </foreach>
+            </if>
+        </where>
+    </select>
+    <select id="findEmpByName" parameterType="java.util.Map" resultMap="empEntity">
+        <bind name="pattern1" value="'%'+realName+'%'"></bind>
+        SELECT ID,EMPLOYEE_ID,USERNAME,REALNAME,SEX,EMAIL,BIRTH,PHONE,ADDRESS,CREATE_TIME,DEPARTMENT_ID
+        FROM EMPLOYEE
+        <where>
+            <if test="pattern1 != null">
+                AND realname LIKE #{pattern1}
+            </if>
+        </where>
+    </select>
+    <insert id="insertEmpBackId" parameterType="com.bdqn.entity.Emp">
+        <selectKey keyProperty="id" resultType="java.lang.Integer" order="AFTER">
+          SELECT LAST_INSERT_ID()
+        </selectKey>
+        INSERT INTO employee(
+        <if test="id != null">
+            id,
+        </if>
+        <if test="empId != null">
+            employee_id,
+        </if>
+        <if test="username != null">
+            username,
+        </if>
+        <if test="realName != null">
+            realname,
+        </if>
+        <if test="sex != null">
+            sex,
+        </if>
+        <if test="email != null">
+            email,
+        </if>
+        <if test="birthday != null">
+            bitth,
+        </if>
+        <if test="phone != null">
+            phone,
+        </if>
+        <if test="address != null">
+            address,
+        </if>
+        <if test="departId != null">
+            department_id,
+        </if>
+        create_time
+        )
+        values(
+        <if test="id != null">
+            #{id},
+        </if>
+        <if test="empId != null">
+            #{empId},
+        </if>
+        <if test="username != null">
+            #{username},
+        </if>
+        <if test="realName != null">
+            #{realName},
+        </if>
+        <if test="sex != null">
+            #{sex},
+        </if>
+        <if test="email != null">
+            #{email},
+        </if>
+        <if test="birthday != null">
+            #{birthday},
+        </if>
+        <if test="phone != null">
+            #{phone},
+        </if>
+        <if test="address != null">
+            #{address},
+        </if>
+        <if test="departId != null">
+            #{departId},
+        </if>
+        now() )
+    </insert>
 </mapper>
