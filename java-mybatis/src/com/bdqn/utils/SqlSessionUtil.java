@@ -18,7 +18,7 @@ import java.io.InputStream;
  **/
 public class SqlSessionUtil {
 
-    //私有化session公差工厂
+    //私有化session工厂
     private static SqlSessionFactory sqlSessionFactory;
     //配置文件位置
     private static final String CONFIG = "config/mybatis-config.xml";
