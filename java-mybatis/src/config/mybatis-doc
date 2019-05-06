@@ -6,6 +6,7 @@
  Maven仓库下载地址：https://mvnrepository.com/artifact/org.mybatis/mybatis  可以下载pom文件和jar文件
  中文文档地址：http://www.mybatis.org/mybatis-3/zh/index.html
 三、mybatis更新日志
+ GitHub更新时有日志展示：https://github.com/mybatis/mybatis-3/releases
 四、mybatis开发步骤
  1、下载mybatisjar包，或者采用Maven方式引入pom文件
  2、创建mybatis核心配置文件
