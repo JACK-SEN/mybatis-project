@@ -1,0 +1,18 @@
+一、mybatis介绍
+ MyBatis 本是apache的一个开源项目iBatis, 2010年这个项目由apache software foundation 迁移到了google code，
+ 并且改名为MyBatis 。2013年11月迁移到Github。
+二、mybatis下载地址
+ GitHub下载地址：https://github.com/mybatis/mybatis-3/releases   包括zip文件和源文件
+ Maven仓库下载地址：https://mvnrepository.com/artifact/org.mybatis/mybatis  可以下载pom文件和jar文件
+ 中文文档地址：http://www.mybatis.org/mybatis-3/zh/index.html
+三、mybatis更新日志
+四、mybatis开发步骤
+ 1、下载mybatisjar包，或者采用Maven方式引入pom文件
+ 2、创建mybatis核心配置文件
+ 3、创建实体类
+ 4、编写Dao层mapper接口和对应的xml文件
+ 5、创建测试类
+五：mybatis标签
+  <insert>|<update>|<delete>|<select>|<resultMap>
+  <if>|<set>|<where>|<foreach>|<choose>
+  <selectKey>|<bind>
