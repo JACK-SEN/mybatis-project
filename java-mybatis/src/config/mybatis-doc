@@ -16,4 +16,5 @@
 五：mybatis标签
   <insert>|<update>|<delete>|<select>|<resultMap>
   <if>|<set>|<where>|<foreach>|<choose>
+  <association>|<collection>
   <selectKey>|<bind>

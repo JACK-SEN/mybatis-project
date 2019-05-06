@@ -10,6 +10,7 @@
 		<result property="createtime" column="rztime" javaType="java.util.Date"></result>
 		<result property="departId" column="e_d_id" javaType="java.lang.Integer"></result>
 	</resultMap>
+
 	<select id="findUserByPrimaryKey" parameterType="java.lang.Integer" resultMap="userEntity">
 		SELECT  * FROM empty WHERE  eid = #{eid}
 	</select>
@@ -82,4 +83,5 @@
 		</set>
 		WHERE eid =#{eid}
 	</update>
+
 </mapper>
