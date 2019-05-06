@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.assoc.mapper.CustomerMapper">
+
+    <resultMap id="customerEntity" type="com.assoc.entity.Customer">
+        <id property="customerId" column="customer_id" javaType="java.lang.Integer"></id>
+        <result property="customerName" column="customer_name" javaType="java.lang.String"></result>
+        <result property="pwd" column="pwd" javaType="java.lang.String"></result>
+        <result property="realName" column="realname" javaType="java.lang.String"></result>
+        <result property="mobilePhone" column="mobile_phone" javaType="java.lang.String"></result>
+        <result property="gender" column="gender" javaType="java.lang.String"></result>
+        <result property="email" column="email" javaType="java.lang.String"></result>
+        <result property="status" column="status" javaType="java.lang.Byte"></result>
+        <result property="card" column="card" javaType="java.lang.String"></result>
+        <result property="money" column="money" javaType="java.lang.Double"></result>
+        <!--一对一关系配置-->
+        <association property="customerInfo"  resultMap="customerInfoEntity">
+        </association>
+        <!--一对多关系配置-->
+        <collection property="orderList" resultMap="orderInfoEntity">
+        </collection>
+    </resultMap>
+    <resultMap id="customerInfoEntity" type="com.assoc.entity.CustomerInfo">
+        <id property="customerInfoId" column="customer_info_id" javaType="java.lang.Integer"></id>
+        <result property="customerId" column="customer_id" javaType="java.lang.Integer"></result>
+        <result property="ustomerPoint" column="customer_point" javaType="java.lang.Integer"></result>
+        <result property="customerLevel" column="customer_level" javaType="java.lang.Integer"></result>
+        <result property="modifyTime" column="modify_time" javaType="java.util.Date"></result>
+        <result property="zipCode" column="zip_code" javaType="java.lang.Short"></result>
+        <result property="province" column="province" javaType="java.lang.String"></result>
+        <result property="city" column="city" javaType="java.lang.String"></result>
+        <result property="district" column="district" javaType="java.lang.String"></result>
+        <result property="address" column="address" javaType="java.lang.String"></result>
+    </resultMap>
+    <resultMap id="orderInfoEntity" type="com.assoc.entity.OrderInfo">
+        <id property="orderId" column="order_id" javaType="java.lang.Integer"></id>
+        <result property="orderNumber" column="order_number" javaType="java.lang.String"></result>
+        <result property="totalMoney" column="total_money" javaType="java.lang.Double"></result>
+        <result property="productName" column="product_name" javaType="java.lang.String"></result>
+        <result property="createTime" column="create_time" javaType="java.util.Date"></result>
+    </resultMap>
+    <select id="findCustomerById" parameterType="java.lang.Integer" resultMap="customerEntity">
+        SELECT c.*  FROM  customer c where c.customer_id = #{customer_id}
+    </select>
+
+    <select id="findCsutomerAndInfo" parameterType="java.lang.Integer" resultMap="customerEntity">
+        SELECT c1.*,c2.province,c2.city,c2.district FROM customer c1,customer_info c2 WHERE	 c1.customer_id = c2.customer_id = #{customer_id}
+    </select>
+    <select id="findCustomerOrders" parameterType="java.lang.Integer" resultMap="customerEntity">
+        SELECT c1.customer_id,c1.realname,o.* FROM customer c1,order_info o WHERE c1.customer_id = o.c_id = #{customer_id}
+    </select>
+</mapper>

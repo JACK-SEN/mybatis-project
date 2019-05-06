@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.assoc.mapper.CustomerInfoMapper">
+
+    <resultMap id="customerInfoEntity" type="com.assoc.entity.CustomerInfo">
+        <id property="customerInfoId" column="customer_info_id" javaType="java.lang.Integer"></id>
+        <result property="customerId" column="customer_id" javaType="java.lang.Integer"></result>
+        <result property="ustomerPoint" column="customer_point" javaType="java.lang.Integer"></result>
+        <result property="customerLevel" column="customer_level" javaType="java.lang.Integer"></result>
+        <result property="modifyTime" column="modify_time" javaType="java.util.Date"></result>
+        <result property="zipCode" column="zip_code" javaType="java.lang.Short"></result>
+        <result property="province" column="province" javaType="java.lang.String"></result>
+        <result property="city" column="city" javaType="java.lang.String"></result>
+        <result property="district" column="district" javaType="java.lang.String"></result>
+        <result property="address" column="address" javaType="java.lang.String"></result>
+    </resultMap>
+
+
+</mapper>
